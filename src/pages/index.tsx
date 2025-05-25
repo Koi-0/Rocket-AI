@@ -1,8 +1,9 @@
 import Image from "next/image";
+import SajuTable from "./components/sajuTable";
 
 const Home = () => {
   return (
-    <main className="relative mx-auto min-w-80 max-w-md bg-red-400">
+    <main className="relative mx-auto w-full max-w-md bg-red-400">
       {/* 이미지, 말풍선 텍스트 */}
       <section className="relative mx-auto h-[2081px] w-[375px]">
         <Image src={"/background.png"} alt="이미지" width={375} height={2081} />
@@ -24,22 +25,20 @@ const Home = () => {
       </section>
 
       {/* 사주팔자 */}
-      <section className="absolute bottom-0 left-1/2 h-[621px] w-[351px] translate-x-[-50%] bg-blue-200 text-[#424242]">
+      <section className="absolute bottom-0 left-1/2 h-[621px] w-full max-w-[351px] translate-x-[-50%] bg-blue-200 text-[#424242]">
         {/* 사주팔자 이미지 */}
-        <div className="absolute left-0 top-0 z-10 h-full w-full">
-          <Image src={"/saju.image.png"} alt="사주팔자 배경 이미지" fill />
+        <div className="absolute left-1/2 top-0 z-10 h-full w-full translate-x-[-50%]">
+          <Image
+            src={"/saju.image.png"}
+            alt="사주팔자 배경 이미지"
+            fill
+            style={{ objectFit: "contain" }}
+          />
         </div>
-
-        {/* 사주팔자 타이틀 */}
-        <div className="absolute left-1/2 top-[40px] z-20 translate-x-[-50%]">
-          <div className="flex flex-col items-center justify-center">
-            <p>김로켓님의 사주</p>
-            <p className="text-lg font-bold">1980년 8월27일 08:10</p>
-          </div>
-        </div>
-
         {/* 사주팔자 컨텐츠 */}
-        <div>사주팔자 컴포넌트 영역</div>
+        <div className="absolute left-1/2 top-[40px] z-20 translate-x-[-50%]">
+          <SajuTable />
+        </div>
       </section>
     </main>
   );

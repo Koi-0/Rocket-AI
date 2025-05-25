@@ -54,8 +54,8 @@ export const sajuTableData = {
     // 7행: 귀인
     [
       { main: "貴人", sub1: "(귀인)" },
-      { main: "", sub1: "" },
-      { main: "", sub1: "" },
+      { main: "", sub1: "(없음)" },
+      { main: "", sub1: "(없음)" },
       { main: "天乙", sub1: "(천을귀인)" },
       [
         { main: "天乙", sub1: "(천을귀인)" },
