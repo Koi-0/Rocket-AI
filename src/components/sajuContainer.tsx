@@ -7,7 +7,8 @@ const SajuContainer = () => {
       <Image
         src={"/saju.image.png"}
         alt="사주팔자 배경 이미지"
-        fill
+        width={351}
+        height={621}
         style={{ objectFit: "contain" }}
       />
       <SajuTable />
