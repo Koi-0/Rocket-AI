@@ -1,5 +1,6 @@
 import { SajuRowProps } from "@/types/sajuType";
 import SajuCell from "./sajuCell";
+import React from "react";
 
 const SajuRow = ({ rowData, rowIndex, getBorderRightStyle }: SajuRowProps) => {
   return (
@@ -19,4 +20,4 @@ const SajuRow = ({ rowData, rowIndex, getBorderRightStyle }: SajuRowProps) => {
   );
 };
 
-export default SajuRow;
+export default React.memo(SajuRow);

@@ -1,4 +1,5 @@
 import { SajuCellProps } from "@/types/sajuType";
+import React from "react";
 
 const SajuCell = ({ cell, rowIndex, colIndex }: SajuCellProps) => {
   const firstCol = colIndex === 0;
@@ -87,4 +88,4 @@ const SajuCell = ({ cell, rowIndex, colIndex }: SajuCellProps) => {
   );
 };
 
-export default SajuCell;
+export default React.memo(SajuCell);
