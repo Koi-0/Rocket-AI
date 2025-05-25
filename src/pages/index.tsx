@@ -2,33 +2,57 @@ import SajuContainer from "@/components/sajuContainer";
 import Image from "next/image";
 
 const Home = () => {
+  const backgroundImage = "/background.png";
+  const speechBubbleImage1 = "/speech-bubble1.png";
+  const speechBubbleImage2 = "/speech-bubble2.png";
+
   return (
-    <main className="relative mx-auto w-full max-w-md bg-red-400">
-      <div className="relative mx-auto h-[2081px] w-[375px]">
+    <main className="mx-auto w-screen min-w-80 max-w-md">
+      <div className="relative w-full min-w-80 max-w-md">
         {/* 배경 이미지 */}
         <Image
-          src={"/background.png"}
-          alt="이미지"
-          width={375}
+          src={backgroundImage}
+          alt="배경 이미지"
+          width={448}
           height={2081}
           priority
           loading="eager"
         />
 
         {/* 첫번째 말풍선 */}
-        <div className="text-md absolute left-[70px] top-[658px] inline-block text-black">
-          <div className="flex flex-col items-center justify-center">
-            <p>이제 본격적으로</p>
-            <p>OO님의 사주팔자를</p>
-            <p>분석해볼 차례네요.</p>
+        <div className="absolute left-[-2%] top-[28.8%] w-[75%]">
+          <div className="relative aspect-[215/139] w-full">
+            <Image
+              src={speechBubbleImage1}
+              alt="말풍선 이미지 1"
+              fill
+              className="object-contain"
+              priority
+              style={{ zIndex: 10 }}
+            />
+            <div className="absolute left-[27%] top-[34%] z-20 flex w-fit flex-col items-center justify-center text-center text-[clamp(0.9rem,4.5vw,1.25rem)] leading-normal text-black">
+              <p>이제 본격적으로</p>
+              <p>OO님의 사주팔자를</p>
+              <p>분석해볼 차례네요.</p>
+            </div>
           </div>
         </div>
 
         {/* 두번째 말풍선 */}
-        <div className="text-md absolute left-[62px] top-[1023px] inline-block text-black">
-          <div className="flex flex-col items-center justify-center">
-            <p>제가 oo님의 사주를</p>
-            <p>보기 쉽게 표로 정리했어요.</p>
+        <div className="absolute left-[-2%] top-[47%] w-[80%]">
+          <div className="relative aspect-[239/139] w-full">
+            <Image
+              src={speechBubbleImage2}
+              alt="말풍선 이미지 1"
+              fill
+              className="object-contain"
+              priority
+              style={{ zIndex: 10 }}
+            />
+            <div className="absolute left-[21%] top-[28%] z-20 flex w-fit flex-col items-center justify-center text-center text-[clamp(0.9rem,4.5vw,1.25rem)] leading-normal text-black">
+              <p>제가 oo님의 사주를</p>
+              <p>보기 쉽게 표로 정리했어요.</p>
+            </div>
           </div>
         </div>
 
