@@ -1,6 +1,5 @@
+import SajuContainer from "@/components/sajuContainer";
 import Image from "next/image";
-import SajuTable from "./components/sajuTable";
-import SajuContainer from "./components/sajuContainer";
 
 const Home = () => {
   return (
@@ -22,7 +21,7 @@ const Home = () => {
         <div className="text-md absolute left-[62px] top-[1023px] inline-block text-black">
           <div className="flex flex-col items-center justify-center">
             <p>제가 oo님의 사주를</p>
-            <p>보기 쉽게 표로 정리했어요</p>
+            <p>보기 쉽게 표로 정리했어요.</p>
           </div>
         </div>
 

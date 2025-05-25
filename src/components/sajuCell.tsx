@@ -1,4 +1,4 @@
-import { SajuCellProps } from "../types/sajuType";
+import { SajuCellProps } from "@/types/sajuType";
 
 const SajuCell = ({ cell, rowIndex, colIndex }: SajuCellProps) => {
   const firstCol = colIndex === 0;

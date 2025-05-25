@@ -1,6 +1,4 @@
-import React from "react";
-import { SajuCell } from "../types/sajuType";
-import { sajuTableData } from "../data/sajuTableData";
+import { sajuTableData } from "@/data/sajuTableData";
 import SajuRow from "./sajuRow";
 
 const SajuTable = () => {

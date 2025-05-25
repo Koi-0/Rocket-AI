@@ -1,4 +1,4 @@
-import { SajuRowProps } from "../types/sajuType";
+import { SajuRowProps } from "@/types/sajuType";
 import SajuCell from "./sajuCell";
 
 const SajuRow = ({ rowData, rowIndex, getBorderRightStyle }: SajuRowProps) => {
