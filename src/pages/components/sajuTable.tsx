@@ -3,35 +3,65 @@ import { SajuCell } from "../types/sajuType";
 import { sajuTableData } from "../data/sajuTableData";
 
 const SajuTable = () => {
+  // 특정 cell에 대한 스타일
+  const getSajuCellStyle = (rowIndex: number, colIndex: number) => {
+    if (rowIndex === 1 && colIndex === 2) {
+      return {
+        backgroundColor: "#C23030",
+      };
+    }
+
+    if (rowIndex === 2 && colIndex === 1) {
+      return {
+        backgroundColor: "#18868C",
+      };
+    }
+
+    if (rowIndex === 2 && colIndex === 2) {
+      return {
+        backgroundColor: "#C23030",
+      };
+    }
+
+    if (rowIndex === 2 && colIndex === 4) {
+      return {
+        backgroundColor: "#f9f9f9",
+        border: "1px solid #000000",
+        color: "#000000",
+      };
+    }
+
+    return {};
+  };
+
+  // 특정 cell에 대한 오른쪽 테두리 스타일
+  const getBorderRightStyle = (colIndex: number) => {
+    return colIndex >= 1 && colIndex <= 3
+      ? "0.5px solid #8A8A8A"
+      : "1px solid #000000";
+  };
+
+  // 각 cell의 내용을 렌더링하는 함수
   const renderCellContent = (
     cell: SajuCell,
-    rowIndex?: number,
-    cellIndex?: number,
+    rowIndex: number,
+    colIndex: number,
   ) => {
-    const isFirstCol = cellIndex === 0;
-    const isSpecialCell = rowIndex === 1 || rowIndex === 2;
-    const highlight = isSpecialCell && cellIndex! >= 1 && cellIndex! <= 4;
+    const firstCol = colIndex === 0;
+    const specialRow = rowIndex === 1 || rowIndex === 2;
+    const specialCol = colIndex >= 1 && colIndex <= 4;
+    const specialCell = specialRow && specialCol;
 
+    // cell이 배열인 경우
     if (Array.isArray(cell)) {
       return (
         <div
-          className={`m-1 flex flex-col items-center justify-center leading-tight ${
-            isFirstCol ? "bg-[#f5f5f5]" : ""
-          }`}
+          className={`m-1 flex flex-col items-center justify-center gap-1 leading-tight`}
         >
           {cell.map((item, i) => (
             <div key={i} className="flex flex-col items-center">
-              <div className={isFirstCol ? "text-base" : "text-sm"}>
-                {item.main}
-              </div>
-              <div className={isFirstCol ? "text-[10px]" : "text-[9px]"}>
-                {item.sub1}
-              </div>
-              {item.sub2 && (
-                <div className={isFirstCol ? "text-[10px]" : "text-[8px]"}>
-                  {item.sub2}
-                </div>
-              )}
+              <div className="text-sm">{item.main}</div>
+              <div className="text-[9px]">{item.sub1}</div>
             </div>
           ))}
         </div>
@@ -40,24 +70,25 @@ const SajuTable = () => {
 
     return (
       <div
-        className={`flex flex-col items-center justify-center leading-tight ${
-          highlight
-            ? "m-1 h-[55px] w-[55px] rounded-xl bg-[#2F2F2F] text-white"
+        className={`flex flex-col items-center justify-center text-center leading-tight ${
+          specialCell
+            ? "m-1 h-[55px] rounded-xl bg-[#2f2f2f] text-white"
             : "h-[42px]"
-        } ${isFirstCol ? "w-12" : ""}`}
+        } ${firstCol ? "w-12" : "w-[55px]"}`}
+        style={getSajuCellStyle(rowIndex, colIndex)}
       >
         <div
           className={
-            isFirstCol ? "text-[12px]" : highlight ? "text-[7px]" : "text-sm"
+            firstCol ? "text-[12px]" : specialCell ? "text-[7px]" : "text-sm"
           }
         >
           {cell.main}
         </div>
         <div
           className={
-            isFirstCol
+            firstCol
               ? "text-[7px]"
-              : highlight
+              : specialCell
                 ? "text-[25px]"
                 : "0 text-[10px]"
           }
@@ -65,65 +96,57 @@ const SajuTable = () => {
           {cell.sub1}
         </div>
         {cell.sub2 && (
-          <div className={highlight ? "text-[8px]" : ""}>{cell.sub2}</div>
+          <div className={specialCell ? "text-[8px]" : ""}>{cell.sub2}</div>
         )}
       </div>
     );
   };
 
   return (
-    <div className="flex flex-col items-center justify-center text-[#424242]">
-      <h1 className="mb-3 text-sm">{sajuTableData.name}의 사주</h1>
-      <p className="text-md mb-[26px] font-bold">{sajuTableData.birthday}</p>
-      <table>
-        <thead>
-          <tr>
-            {sajuTableData.headers.map((header, index) => {
-              const borderRight =
-                index >= 1 && index <= 3
-                  ? "0.5px solid #8A8A8A"
-                  : "1px solid #424242";
-
-              return (
-                <th
-                  key={index}
-                  className="border-b border-b-[#424242] text-center"
-                  style={{
-                    borderTop: "none",
-                    borderLeft: "none",
-                    borderRight,
-                    height: "36px",
-                  }}
-                >
-                  {header}
-                </th>
-              );
-            })}
-          </tr>
-        </thead>
-        <tbody>
-          {sajuTableData.rows.map((row, rowIndex) => (
-            <tr key={rowIndex}>
-              {row.map((cell, cellIndex) => {
-                const borderRight =
-                  cellIndex >= 1 && cellIndex <= 3
-                    ? "0.5px solid #8A8A8A"
-                    : "1px solid #424242";
-
+    <div className="absolute left-1/2 top-[40px] z-20 translate-x-[-50%]">
+      <div className="flex flex-col items-center justify-center text-[#424242]">
+        <h1 className="mb-3 text-base">{sajuTableData.name}의 사주</h1>
+        <h2 className="mb-[26px] text-xl font-bold">
+          {sajuTableData.birthday}
+        </h2>
+        <table>
+          <thead>
+            <tr>
+              {sajuTableData.headers.map((header, colIndex) => {
                 return (
-                  <td
-                    key={cellIndex}
-                    className="border-b border-b-[#424242] text-center"
-                    style={{ borderRight }}
+                  <th
+                    key={`header-${colIndex}`}
+                    className="h-9 border-b border-b-black"
+                    style={{ borderRight: getBorderRightStyle(colIndex) }}
                   >
-                    {renderCellContent(cell, rowIndex, cellIndex)}
-                  </td>
+                    {header}
+                  </th>
                 );
               })}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            {sajuTableData.rows.map((rowData, rowIndex) => (
+              <tr key={`rowData-${rowIndex}`}>
+                {rowData.map((cellData, colIndex) => {
+                  return (
+                    <td
+                      key={`cellData-${rowIndex}-${colIndex}`}
+                      className="border-b border-b-black"
+                      style={{ borderRight: getBorderRightStyle(colIndex) }}
+                    >
+                      <div className="flex flex-col items-center justify-center">
+                        {renderCellContent(cellData, rowIndex, colIndex)}
+                      </div>
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
