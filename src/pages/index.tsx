@@ -6,7 +6,14 @@ const Home = () => {
     <main className="relative mx-auto w-full max-w-md bg-red-400">
       <div className="relative mx-auto h-[2081px] w-[375px]">
         {/* 배경 이미지 */}
-        <Image src={"/background.png"} alt="이미지" width={375} height={2081} />
+        <Image
+          src={"/background.png"}
+          alt="이미지"
+          width={375}
+          height={2081}
+          priority
+          loading="eager"
+        />
 
         {/* 첫번째 말풍선 */}
         <div className="text-md absolute left-[70px] top-[658px] inline-block text-black">
