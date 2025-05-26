@@ -60,7 +60,7 @@ const SajuCell = ({ cell, rowIndex, colIndex }: SajuCellProps) => {
         specialCell
           ? "m-1 h-[55px] rounded-xl bg-[#2f2f2f] text-white"
           : "h-[42px]"
-      } ${firstCol ? "w-12" : "w-[55px]"}`}
+      } ${firstCol ? "w-3/4" : "w-full"}`}
       style={getSajuCellStyle()}
     >
       <div

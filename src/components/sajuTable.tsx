@@ -24,13 +24,15 @@ const SajuTable = () => {
   }, [getBorderRightStyle]);
 
   return (
-    <div className="absolute left-1/2 top-[40px] z-20 translate-x-[-50%]">
+    <div className="absolute left-1/2 top-[40px] z-20 w-[80vw] translate-x-[-50%]">
       <div className="flex flex-col items-center justify-center text-[#424242]">
-        <h1 className="mb-3 text-base">{sajuTableData.name}의 사주</h1>
-        <h2 className="mb-[26px] text-xl font-bold">
+        <h1 className="mb-1 text-[clamp(0.9rem,6vw,1.8rem)]">
+          {sajuTableData.name}의 사주
+        </h1>
+        <h2 className="mb-4 whitespace-nowrap text-[clamp(1rem,6vw,1.8rem)] font-bold">
           {sajuTableData.birthday}
         </h2>
-        <table>
+        <table className="aspect-[310/474] w-[100%] bg-red-400 text-[clamp(0.7rem,1.5vw,1rem)]">
           <thead>
             <tr>{headerElements}</tr>
           </thead>
