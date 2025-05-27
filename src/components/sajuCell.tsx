@@ -12,6 +12,7 @@ const SajuCell = ({ cell, rowIndex, colIndex }: SajuCellProps) => {
     if (rowIndex === 1 && colIndex === 2) {
       return {
         backgroundColor: "#C23030",
+        // padding: "0.5rem",
       };
     }
 
@@ -46,8 +47,12 @@ const SajuCell = ({ cell, rowIndex, colIndex }: SajuCellProps) => {
       >
         {cell.map((item, i) => (
           <div key={i} className="flex flex-col items-center">
-            <div className="text-sm">{item.main}</div>
-            <div className="text-[9px]">{item.sub1}</div>
+            <div className="bg-white text-[clamp(1rem,5vw,1.2rem)]">
+              {item.main}
+            </div>
+            <div className="bg-green-300 text-[clamp(0.6rem,6vw,0.7rem)]">
+              {item.sub1}
+            </div>
           </div>
         ))}
       </div>
@@ -57,15 +62,17 @@ const SajuCell = ({ cell, rowIndex, colIndex }: SajuCellProps) => {
   return (
     <div
       className={`flex flex-col items-center justify-center text-center leading-tight ${
-        specialCell
-          ? "m-1 h-[55px] rounded-xl bg-[#2f2f2f] text-white"
-          : "h-[42px]"
-      } ${firstCol ? "w-3/4" : "w-full"}`}
+        specialCell ? "m-1 rounded-xl bg-[#2f2f2f] text-white" : ""
+      } ${firstCol ? "" : ""}`}
       style={getSajuCellStyle()}
     >
       <div
         className={
-          firstCol ? "text-[12px]" : specialCell ? "text-[7px]" : "text-sm"
+          firstCol
+            ? "bg-purple-200 text-[clamp(1rem,5vw,1.2rem)]"
+            : specialCell
+              ? "bg-orange-600 text-[clamp(0.5rem,3vw,0.7rem)]"
+              : "bg-red-700 text-[clamp(1rem,5vw,1.2rem)]"
         }
       >
         {cell.main}
@@ -73,16 +80,22 @@ const SajuCell = ({ cell, rowIndex, colIndex }: SajuCellProps) => {
       <div
         className={
           firstCol
-            ? "text-[7px]"
+            ? "bg-blue-800 text-[clamp(0.4rem,5vw,0.6rem)]"
             : specialCell
-              ? "text-[25px]"
-              : "0 text-[10px]"
+              ? "bg-black text-[clamp(1.2rem,7vw,1.8rem)]"
+              : "bg-yellow-300 text-[clamp(0.6rem,6vw,0.7rem)]"
         }
       >
         {cell.sub1}
       </div>
       {cell.sub2 && (
-        <div className={specialCell ? "text-[8px]" : ""}>{cell.sub2}</div>
+        <div
+          className={
+            specialCell ? "bg-slate-500 text-[clamp(0.5rem,3vw,0.8rem)]" : ""
+          }
+        >
+          {cell.sub2}
+        </div>
       )}
     </div>
   );

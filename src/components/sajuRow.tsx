@@ -11,7 +11,7 @@ const SajuRow = ({ rowData, rowIndex, getBorderRightStyle }: SajuRowProps) => {
           className="border-b border-b-black"
           style={{ borderRight: getBorderRightStyle(colIndex) }}
         >
-          <div className="flex flex-col items-center justify-center">
+          <div className="flex flex-col items-center justify-center text-blue-400">
             <SajuCell cell={cellData} rowIndex={rowIndex} colIndex={colIndex} />
           </div>
         </td>

@@ -6,7 +6,7 @@ const SajuContainer = () => {
 
   return (
     <div className="absolute bottom-[3%] left-1/2 w-[98%] translate-x-[-50%]">
-      <div className="aspect-[351/621] w-full">
+      <div className="aspect-[351/621]">
         <Image
           src={sajuImage}
           alt="사주팔자 배경 이미지"
