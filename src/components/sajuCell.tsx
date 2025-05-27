@@ -56,7 +56,7 @@ const SajuCell = ({ cell, rowIndex, colIndex }: SajuCellProps) => {
     <div
       className={`flex flex-col items-center justify-center gap-[2px] text-center leading-tight ${
         specialCell
-          ? "m-1 h-[clamp(45px,15vw,75px)] w-[clamp(45px,15vw,75px)] gap-[2px] rounded-xl bg-[#2f2f2f] text-white"
+          ? "m-1 h-[clamp(45px,15vw,75px)] w-[clamp(45px,15vw,75px)] gap-0 rounded-xl bg-[#2f2f2f] text-white"
           : ""
       } `}
       style={getSajuCellStyle()}
