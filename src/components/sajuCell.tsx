@@ -7,12 +7,10 @@ const SajuCell = ({ cell, rowIndex, colIndex }: SajuCellProps) => {
   const specialCol = colIndex >= 1 && colIndex <= 4;
   const specialCell = specialRow && specialCol;
 
-  // 특정 cell에 대한 스타일
   const getSajuCellStyle = () => {
     if (rowIndex === 1 && colIndex === 2) {
       return {
         backgroundColor: "#C23030",
-        // padding: "0.5rem",
       };
     }
 
@@ -39,20 +37,15 @@ const SajuCell = ({ cell, rowIndex, colIndex }: SajuCellProps) => {
     return {};
   };
 
-  // cell이 배열인 경우
   if (Array.isArray(cell)) {
     return (
       <div
-        className={`m-1 flex flex-col items-center justify-center gap-1 leading-tight`}
+        className={`flex flex-col items-center justify-center gap-1 leading-tight`}
       >
         {cell.map((item, i) => (
           <div key={i} className="flex flex-col items-center">
-            <div className="bg-white text-[clamp(1rem,5vw,1.2rem)]">
-              {item.main}
-            </div>
-            <div className="bg-green-300 text-[clamp(0.6rem,6vw,0.7rem)]">
-              {item.sub1}
-            </div>
+            <div className="text-[clamp(0.8rem,4vw,1.2rem)]">{item.main}</div>
+            <div className="text-[clamp(0.6rem,6vw,0.7rem)]">{item.sub1}</div>
           </div>
         ))}
       </div>
@@ -61,18 +54,20 @@ const SajuCell = ({ cell, rowIndex, colIndex }: SajuCellProps) => {
 
   return (
     <div
-      className={`flex flex-col items-center justify-center text-center leading-tight ${
-        specialCell ? "m-1 rounded-xl bg-[#2f2f2f] text-white" : ""
-      } ${firstCol ? "" : ""}`}
+      className={`flex flex-col items-center justify-center gap-[2px] text-center leading-tight ${
+        specialCell
+          ? "m-1 h-[clamp(45px,15vw,75px)] w-[clamp(45px,15vw,75px)] gap-[2px] rounded-xl bg-[#2f2f2f] text-white"
+          : ""
+      } `}
       style={getSajuCellStyle()}
     >
       <div
         className={
           firstCol
-            ? "bg-purple-200 text-[clamp(1rem,5vw,1.2rem)]"
+            ? "text-[clamp(0.8rem,4vw,1.2rem)]"
             : specialCell
-              ? "bg-orange-600 text-[clamp(0.5rem,3vw,0.7rem)]"
-              : "bg-red-700 text-[clamp(1rem,5vw,1.2rem)]"
+              ? "text-[clamp(0.4rem,2vw,0.5rem)]"
+              : "text-[clamp(0.8rem,4vw,1.2rem)]"
         }
       >
         {cell.main}
@@ -80,20 +75,16 @@ const SajuCell = ({ cell, rowIndex, colIndex }: SajuCellProps) => {
       <div
         className={
           firstCol
-            ? "bg-blue-800 text-[clamp(0.4rem,5vw,0.6rem)]"
+            ? "text-[clamp(0.4rem,5vw,0.5rem)]"
             : specialCell
-              ? "bg-black text-[clamp(1.2rem,7vw,1.8rem)]"
-              : "bg-yellow-300 text-[clamp(0.6rem,6vw,0.7rem)]"
+              ? "text-[clamp(1rem,6vw,1.8rem)]"
+              : "text-[clamp(0.6rem,6vw,0.7rem)]"
         }
       >
         {cell.sub1}
       </div>
       {cell.sub2 && (
-        <div
-          className={
-            specialCell ? "bg-slate-500 text-[clamp(0.5rem,3vw,0.8rem)]" : ""
-          }
-        >
+        <div className={specialCell ? "text-[clamp(0.5rem,2vw,0.8rem)]" : ""}>
           {cell.sub2}
         </div>
       )}
