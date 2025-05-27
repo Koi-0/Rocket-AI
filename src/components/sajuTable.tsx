@@ -1,6 +1,7 @@
 import { sajuTableData } from "@/data/sajuTableData";
-import SajuRow from "./sajuRow";
 import { useCallback, useMemo } from "react";
+import SajuRow from "./sajuRow";
+import Head from "next/head";
 
 const SajuTable = () => {
   const getBorderRightStyle = useCallback((colIndex: number) => {
@@ -22,30 +23,36 @@ const SajuTable = () => {
   }, [getBorderRightStyle]);
 
   return (
-    <div className="absolute left-1/2 top-[6%] z-20 w-[90%] translate-x-[-50%] text-center text-[#424242]">
-      <h1 className="mb-1 text-[clamp(0.9rem,6vw,1.8rem)]">
-        {sajuTableData.name}의 사주
-      </h1>
-      <h2 className="mb-4 whitespace-nowrap text-[clamp(1rem,6vw,1.8rem)] font-bold">
-        {sajuTableData.birthday}
-      </h2>
+    <>
+      <Head>
+        <title>김로겟의 사주 분석표</title>
+      </Head>
 
-      <table className="w-full table-fixed border-collapse whitespace-nowrap">
-        <thead>
-          <tr>{headerElements}</tr>
-        </thead>
-        <tbody>
-          {sajuTableData.rows.map((rowData, rowIndex) => (
-            <SajuRow
-              key={`rowData-${rowIndex}`}
-              rowData={rowData}
-              rowIndex={rowIndex}
-              getBorderRightStyle={getBorderRightStyle}
-            />
-          ))}
-        </tbody>
-      </table>
-    </div>
+      <div className="absolute left-1/2 top-[6%] z-20 w-[90%] translate-x-[-50%] text-center text-[#424242]">
+        <h1 className="mb-1 text-[clamp(0.9rem,6vw,1.8rem)]">
+          {sajuTableData.name}의 사주
+        </h1>
+        <h2 className="mb-4 whitespace-nowrap text-[clamp(1rem,6vw,1.8rem)] font-bold">
+          {sajuTableData.birthday}
+        </h2>
+
+        <table className="w-full table-fixed border-collapse whitespace-nowrap">
+          <thead>
+            <tr>{headerElements}</tr>
+          </thead>
+          <tbody>
+            {sajuTableData.rows.map((rowData, rowIndex) => (
+              <SajuRow
+                key={`rowData-${rowIndex}`}
+                rowData={rowData}
+                rowIndex={rowIndex}
+                getBorderRightStyle={getBorderRightStyle}
+              />
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 };
 
