@@ -75,7 +75,7 @@ const SajuCell = ({ cell, rowIndex, colIndex }: SajuCellProps) => {
       <div
         className={
           firstCol
-            ? "text-[clamp(0.4rem,5vw,0.5rem)]"
+            ? "text-[clamp(0.5rem,5vw,0.7rem)]"
             : specialCell
               ? "text-[clamp(1rem,6vw,1.8rem)]"
               : "text-[clamp(0.6rem,6vw,0.7rem)]"
